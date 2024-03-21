@@ -39,6 +39,7 @@ const read = async () => {
   // resetting offsets is accomplished by kafka.admin()
   await consumer.subscribe({topic: 'first_topic', fromBeginning: true})
   await consumer.run({
+    autoCommit: false, // disabling commit writing
     eachMessage: ({topic, partition, message}) => {
       const prefix = `${topic}[${partition} | ${message.offset}] / ${message.timestamp}`
       // deserialized message is at message.value
