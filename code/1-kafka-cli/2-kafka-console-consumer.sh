@@ -10,7 +10,7 @@ kafka-console-consumer.sh
 # create a topic with 3 partitions
 kafka-topics --command-config playground.config --bootstrap-server upright-boxer-11932-eu2-kafka.upstash.io:9092 --topic second_topic --create --partitions 3
 
-# consuming
+# consuming/subscribing to a hot topic
 kafka-console-consumer --consumer.config playground.config --bootstrap-server upright-boxer-11932-eu2-kafka.upstash.io:9092 --topic second_topic
 
 # other terminal
