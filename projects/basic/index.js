@@ -34,7 +34,9 @@ const write = async () => {
 
 const read = async () => {
   await consumer.connect()
-  // why does the playground ignore the fromBeginning flag?
+  // why does the playground ignore the fromBeginning flag -- because fromBeginning only applies the first time kafka
+  // encounters a groupId, so if a groupId has already been seen it will just treat it like a hot stream.
+  // resetting offsets is accomplished by kafka.admin()
   await consumer.subscribe({topic: 'first_topic', fromBeginning: true})
   await consumer.run({
     eachMessage: ({topic, partition, message}) => {
